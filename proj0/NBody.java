@@ -44,11 +44,9 @@ public class NBody {
 
         double time = 0;
 
-
-
         for( ; time < T; time += dt) {
-        	double[] xForces = new double[5];
-        	double[] yForces = new double[5];
+        	double[] xForces = new double[N];
+        	double[] yForces = new double[N];
         	
         	for(int i = 0; i < N; i ++) {
         		double F = 0;
@@ -70,8 +68,6 @@ public class NBody {
         		Planet p = planets[i];
         		p.update(dt, xForces[i], yForces[i]);
         	}
-
-
 
         	// StdDraw.setCanvasSize(700, 700);
 			StdDraw.setScale(-1 * radius , radius);
