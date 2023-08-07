@@ -3,7 +3,7 @@ public class LinkedListDeque<T> {
         public TNode prev;
         public T item;
         public TNode next;
-        public TNode(TNode p, T i, TNode n) {
+        private TNode(TNode p, T i, TNode n) {
             prev = p;
             item = i;
             next = n;
@@ -12,7 +12,7 @@ public class LinkedListDeque<T> {
 
     private TNode sentinel;
     private int size;
-    public T item0;
+    private T item0;
 
     // Creates an empty linked list deque.
     // note: the first time I write: sentinel = new TNode(sentinel, item0, sentinel);
@@ -69,7 +69,7 @@ public class LinkedListDeque<T> {
 
     // Removes and returns the item at the front of the deque. If no such item exists, returns null.
     public T removeFirst() {
-        if(sentinel.next == null) {
+        if(sentinel.next == sentinel) {
             return null;
         }
         size --;
@@ -84,7 +84,7 @@ public class LinkedListDeque<T> {
 
     // Removes and returns the item at the back of the deque. If no such item exists, returns null.
     public T removeLast() {
-        if(sentinel.next == null) {
+        if(sentinel.next == sentinel) {
             return null;
         }
         size --;
