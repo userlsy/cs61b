@@ -24,12 +24,13 @@ public class ArrayDeque<T> {
     private void resize(int capacity) {
         T[] a = (T[]) new Object[capacity];
 
+        int cap = capacity / 2;
         // for循环是将旧数组中的元素移动到新数组中，这个移动过程该怎么实现呢？
         int j = 0, k = front;
-        for( ; k != front; j ++)
+        for( ; k != rear; j ++)
         {
             a[j] = items[k];
-            k = (k + 1) % capacity;
+            k = (k + 1 + cap) % cap;         // 因为要把原属组中的元素复制到新数组，cap 应该是原属组的容量大小
         }
 
         front = 0;
@@ -98,7 +99,6 @@ public class ArrayDeque<T> {
         while(i != rear) {
             // note: please note the print method
             System.out.print(items[i] + " ");
-//            i ++;
             i = (i + 1 + capacity) % capacity;
         }
     }
@@ -118,8 +118,8 @@ public class ArrayDeque<T> {
     public T removeLast() {
         if( isEmpty() ) return null;
 
-        T temp = items[(rear - 1 + capacity) % capacity];
         rear = (rear - 1 + capacity) % capacity;
+        T temp = items[rear];
         size --;
 
         return temp;
@@ -132,7 +132,7 @@ public class ArrayDeque<T> {
     // Gets the item at the given index, where 0 is the front, 1 is the next item, and so forth.
     // If no such item exists, returns null. Must not alter the deque!
     public T get(int index) {
-        if(size == 0 || index > size) return null;
+        if(size == 0 || index > size || index < 0) return null;
 
         int i = front;
         int j = 0;
