@@ -103,10 +103,10 @@ public class ArrayDeque<T> {
             return null;
         }
 
-        if (capacity >= 16 && R < 0.25) {
-            capacity /= 2;
-            resize(capacity);
-        }
+//        if (capacity >= 16 && R < 0.25) {
+//            capacity /= 2;
+//            resize(capacity);
+//        }
 
         // 因为 front 指向数组第一个元素的下标，所以先将第一个元素赋值给 中间变量，再将 front 的位置后移一位
         T temp = items[front];
@@ -123,10 +123,10 @@ public class ArrayDeque<T> {
             return null;
         }
 
-        if (capacity >= 16 && R < 0.25) {
-            capacity /= 2;
-            resize(capacity);
-        }
+//        if (capacity >= 16 && R < 0.25) {
+//            capacity /= 2;
+//            resize(capacity);
+//        }
 
         // 因为 rear 指向数组最后一个元素的后一个位置，所以先将 rear 向前移动一位，再将 值 赋给中间变量
         rear = (rear - 1 + capacity) % capacity;
