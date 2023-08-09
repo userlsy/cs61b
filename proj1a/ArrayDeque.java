@@ -107,8 +107,7 @@ public class ArrayDeque<T> {
     public T removeFirst() {
         if( isEmpty() ) return null;
 
-        T temp;
-        temp = items[front];
+        T temp = items[front];
         front = (front + 1 + capacity) % capacity;
         size --;
 
@@ -119,7 +118,7 @@ public class ArrayDeque<T> {
     public T removeLast() {
         if( isEmpty() ) return null;
 
-        T temp = items[rear];
+        T temp = items[rear - 1];
         rear = (rear - 1 + capacity) % capacity;
         size --;
 
