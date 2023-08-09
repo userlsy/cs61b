@@ -118,7 +118,7 @@ public class ArrayDeque<T> {
     public T removeLast() {
         if( isEmpty() ) return null;
 
-        T temp = items[rear - 1];
+        T temp = items[(rear - 1 + capacity) % capacity];
         rear = (rear - 1 + capacity) % capacity;
         size --;
 
