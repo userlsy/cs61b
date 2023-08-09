@@ -77,7 +77,7 @@ public class ArrayDeque<T> {
     }
 
     // Returns true if deque is full, false otherwise.
-    public boolean isFull() {
+    private boolean isFull() {
         if( (rear + 1) % capacity == front) {
             return true;
         }
@@ -98,7 +98,8 @@ public class ArrayDeque<T> {
         while(i != rear) {
             // note: please note the print method
             System.out.print(items[i] + " ");
-            i ++;
+//            i ++;
+            i = (i + 1 + capacity) % capacity;
         }
     }
 
@@ -123,7 +124,7 @@ public class ArrayDeque<T> {
         return temp;
     }
 
-    public int minusOne(int index) {
+    private int minusOne(int index) {
         return 0;
     }
 
@@ -134,7 +135,7 @@ public class ArrayDeque<T> {
 
         int i = front;
         int j = 0;
-        for( ; j <= index; j ++)
+        for( ; j < index; j ++)
         {
             i = (i + 1) % capacity;
         }
