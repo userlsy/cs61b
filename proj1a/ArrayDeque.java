@@ -110,6 +110,7 @@ public class ArrayDeque<T> {
         T temp;
         temp = items[front];
         front = (front + 1 + capacity) % capacity;
+        size --;
 
         return temp;
     }
@@ -120,6 +121,7 @@ public class ArrayDeque<T> {
 
         T temp = items[rear];
         rear = (rear - 1 + capacity) % capacity;
+        size --;
 
         return temp;
     }
