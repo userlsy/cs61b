@@ -1,35 +1,48 @@
-/**  用数组实现双端队列
-    使用系数 R = size / capacity;
-    if (capacity >= 16) R >= 0.25;
-    front == rear时，队列为空
-    (rear + 1) % capacity == front时，队列为满. */
-public class ArrayDeque<T> {
-    private T[] items;
+/**
+ * 用数组实现双端队列
+ * 使用系数 R = size / capacity;
+ * if (capacity >= 16) R >= 0.25;
+ * front == rear时，队列为空
+ * (rear + 1) % capacity == front时，队列为满.
+ */
+public class ArrayDeque<Item> {
+    /** 新建一个 Item 类型的数组. */
+    private Item[] items;
+    /** 数组中的元素个数，初始为0. */
     private int size;
+    /** 数组的大小，即数组所能容纳的元素个数. */
     private int capacity;
-    /** usage ratio */
+    /** usage ratio. */
     private double R;
 
-    /** front 是队列中第一个元素的下标位置 */
+    /** front 是队列中第一个元素的下标位置. */
     private int front;
-    /** rear 是队列中最后一个元素的后一个位置 */
+    /** rear 是队列中最后一个元素的后一个位置. */
     private int rear;
 
-    // Creates an empty array deque.
+    /**
+     * Creates an empty array deque.
+     */
     public ArrayDeque() {
         capacity = 8;
-        items = (T[]) new Object[8];
+        items = (Item[]) new Object[8];
         front = 0;
         rear = 0;
         size = 0;
     }
 
-    // Returns the number of items in the deque.
+    /**
+     * Returns the number of items in the deque.
+     * @return
+     */
     public int size() {
         return size;
     }
 
-    // Returns true if deque is empty, false otherwise.
+    /**
+     * Returns true if deque is empty, false otherwise.
+     * @return
+     */
     public boolean isEmpty() {
         if (size != 0) {
             return false;
@@ -37,7 +50,10 @@ public class ArrayDeque<T> {
         return true;
     }
 
-    // Returns true if deque is full, false otherwise.
+    /**
+     * Returns true if deque is full, false otherwise.
+     * @return
+     */
     private boolean isFull() {
         // (rear + 1) % capacity == front 时，数组满
         if ((rear + 1) % capacity != front) {
@@ -47,7 +63,7 @@ public class ArrayDeque<T> {
     }
 
     private void resize(int capacity) {
-        T[] a = (T[]) new Object[capacity];
+        Item[] a = (Item[]) new Object[capacity];
 
         int cap = capacity / 2;
         // for循环是将旧数组中的元素移动到新数组中，这个移动过程该怎么实现呢？
@@ -65,9 +81,12 @@ public class ArrayDeque<T> {
         items = a;
     }
 
-    // Adds an item of type T to the front of the deque.
-    // 先判断队列是否满，若满则调整队列大小
-    public void addFirst(T item) {
+    /**
+     * Adds an item of type T to the front of the deque.
+     * 先判断队列是否满，若满则调整队列大小.
+     * @param item 参数
+     */
+    public void addFirst(Item item) {
         if (isFull()) {
             // 如果此时数组已满，令数组的容量扩大二倍，并将旧数组的元素移动到新数组中
             capacity *= 2;
@@ -81,9 +100,12 @@ public class ArrayDeque<T> {
         size++;
     }
 
-    // Adds an item of type T to the back of the deque.
-    // 先判断队列是否满，若满则调整队列大小
-    public void addLast(T item) {
+    /**
+     * Adds an item of type T to the back of the deque.
+     * 先判断队列是否满，若满则调整队列大小
+     * @param item 参数
+     */
+    public void addLast(Item item) {
         if (isFull()) {
             capacity *= 2;
             resize(capacity);
@@ -96,54 +118,60 @@ public class ArrayDeque<T> {
         size++;
     }
 
-    // Removes and returns the item at the front of the deque.
-    // If no such item exists, returns null.
-    public T removeFirst() {
+    /**
+     * Removes and returns the item at the front of the deque.
+     * If no such item exists, returns null.
+     * @return
+     */
+    public Item removeFirst() {
         if (isEmpty()) {
             return null;
         }
 
-//        if (capacity >= 16 && R < 0.25) {
-//            capacity /= 2;
-//            resize(capacity);
-//        }
-
         // 因为 front 指向数组第一个元素的下标，所以先将第一个元素赋值给 中间变量，再将 front 的位置后移一位
-        T temp = items[front];
+        Item temp = items[front];
         front = (front + 1 + capacity) % capacity;
         size--;
 
         return temp;
     }
 
-    // Removes and returns the item at the back of the deque.
-    // If no such item exists, returns null.
-    public T removeLast() {
+    /**
+     * Removes and returns the item at the back of the deque.
+     * If no such item exists, returns null.
+     * @return
+     */
+    public Item removeLast() {
         if (isEmpty()) {
             return null;
         }
 
-//        if (capacity >= 16 && R < 0.25) {
-//            capacity /= 2;
-//            resize(capacity);
-//        }
-
-        // 因为 rear 指向数组最后一个元素的后一个位置，所以先将 rear 向前移动一位，再将 值 赋给中间变量
+        /**
+         * 因为 rear 指向数组最后一个元素的后一个位置，所以先将 rear 向前移动一位，再将 值 赋给中间变量.
+         */
         rear = (rear - 1 + capacity) % capacity;
-        T temp = items[rear];
+        Item temp = items[rear];
         size--;
 
         return temp;
     }
 
+    /**
+     * @param index 索引
+     * @return
+     */
     private int minusOne(int index) {
         return 0;
     }
 
-    // Gets the item at the given index,
-    // where 0 is the front, 1 is the next item, and so forth.
-    // If no such item exists, returns null. Must not alter the deque!
-    public T get(int index) {
+    /**
+     * Gets the item at the given index,
+     * where 0 is the front, 1 is the next item, and so forth.
+     * If no such item exists, returns null. Must not alter the deque!
+     * @param index 索引
+     * @return
+     */
+    public Item get(int index) {
         if (size == 0 || index > size || index < 0) {
             return null;
         }
@@ -158,7 +186,9 @@ public class ArrayDeque<T> {
         return items[i];
     }
 
-    // Prints the items in the deque from first to last, separated by a space.
+    /**
+     * Prints the items in the deque from first to last, separated by a space.
+     */
     public void printDeque() {
         int i = front;
         /* 若初始为空，然后 addFirst，那么该如何打印？. */
@@ -169,6 +199,6 @@ public class ArrayDeque<T> {
             /* 此处不是简单的 i ++，因为这是数组表示的双端队列. */
             i = (i + 1 + capacity) % capacity;
         }
+        System.out.println();
     }
-
 }
