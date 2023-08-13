@@ -5,9 +5,9 @@
  * front == rear时，队列为空
  * (rear + 1) % capacity == front时，队列为满.
  */
-public class ArrayDeque<Item> {
-    /** 新建一个 Item 类型的数组. */
-    private Item[] items;
+public class ArrayDeque<T> {
+    /** 新建一个 T 类型的数组. */
+    private T[] items;
     /** 数组中的元素个数，初始为0. */
     private int size;
     /** 数组的大小，即数组所能容纳的元素个数. */
@@ -25,7 +25,7 @@ public class ArrayDeque<Item> {
      */
     public ArrayDeque() {
         capacity = 8;
-        items = (Item[]) new Object[8];
+        items = (T[]) new Object[8];
         front = 0;
         rear = 0;
         size = 0;
@@ -52,23 +52,27 @@ public class ArrayDeque<Item> {
 
     /**
      * Returns true if deque is full, false otherwise.
+     * (rear + 1) % capacity == front 时，数组满
      * @return
      */
     private boolean isFull() {
-        // (rear + 1) % capacity == front 时，数组满
         if ((rear + 1) % capacity != front) {
             return false;
         }
         return true;
     }
 
-    private void resize(int capacity) {
-        Item[] a = (Item[]) new Object[capacity];
+    /**
+     * 调整数组大小.
+     * 第 77 行：for循环是将旧数组中的元素移动到新数组中，这个移动过程该怎么实现呢？
+     * 第 77 行：注意 for 循环退出条件：是 k != rear; 不是 k < rear; 注意这是数组构建的双端队列
+     * @param capacity1 调整之后的数组容量
+     */
+    private void resize(int capacity1) {
+        T[] a = (T[]) new Object[capacity1];
 
-        int cap = capacity / 2;
-        // for循环是将旧数组中的元素移动到新数组中，这个移动过程该怎么实现呢？
+        int cap = capacity1 / 2;
         int j = 0, k = front;
-        // 注意 for 循环退出条件：是 k != rear; 不是 k < rear; 注意这是数组构建的双端队列
         for ( ; k != rear; j++) {
             a[j] = items[k];
 
@@ -86,7 +90,7 @@ public class ArrayDeque<Item> {
      * 先判断队列是否满，若满则调整队列大小.
      * @param item 参数
      */
-    public void addFirst(Item item) {
+    public void addFirst(T item) {
         if (isFull()) {
             // 如果此时数组已满，令数组的容量扩大二倍，并将旧数组的元素移动到新数组中
             capacity *= 2;
@@ -105,7 +109,7 @@ public class ArrayDeque<Item> {
      * 先判断队列是否满，若满则调整队列大小
      * @param item 参数
      */
-    public void addLast(Item item) {
+    public void addLast(T item) {
         if (isFull()) {
             capacity *= 2;
             resize(capacity);
@@ -123,13 +127,13 @@ public class ArrayDeque<Item> {
      * If no such item exists, returns null.
      * @return
      */
-    public Item removeFirst() {
+    public T removeFirst() {
         if (isEmpty()) {
             return null;
         }
 
         // 因为 front 指向数组第一个元素的下标，所以先将第一个元素赋值给 中间变量，再将 front 的位置后移一位
-        Item temp = items[front];
+        T temp = items[front];
         front = (front + 1 + capacity) % capacity;
         size--;
 
@@ -141,7 +145,7 @@ public class ArrayDeque<Item> {
      * If no such item exists, returns null.
      * @return
      */
-    public Item removeLast() {
+    public T removeLast() {
         if (isEmpty()) {
             return null;
         }
@@ -150,7 +154,7 @@ public class ArrayDeque<Item> {
          * 因为 rear 指向数组最后一个元素的后一个位置，所以先将 rear 向前移动一位，再将 值 赋给中间变量.
          */
         rear = (rear - 1 + capacity) % capacity;
-        Item temp = items[rear];
+        T temp = items[rear];
         size--;
 
         return temp;
@@ -171,7 +175,7 @@ public class ArrayDeque<Item> {
      * @param index 索引
      * @return
      */
-    public Item get(int index) {
+    public T get(int index) {
         if (size == 0 || index > size || index < 0) {
             return null;
         }

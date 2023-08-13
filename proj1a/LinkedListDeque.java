@@ -1,15 +1,15 @@
 /**
  * 用链表表示数组.
- * @param <Item>
+ * @param <T>
  * @author userlsy
  */
-public class LinkedListDeque<Item> {
+public class LinkedListDeque<T> {
     /** 数组节点的构造. */
     private class TNode {
         /** 指向当前节点的前一个节点. */
         private TNode prev;
         /** 当前节点存储的值. */
-        private Item item;
+        private T item;
         /** 指向当前节点的后一个节点. */
         private TNode next;
 
@@ -19,7 +19,7 @@ public class LinkedListDeque<Item> {
          * @param i item
          * @param n next
          */
-        private TNode(TNode p, Item i, TNode n) {
+        private TNode(TNode p, T i, TNode n) {
             prev = p;
             item = i;
             next = n;
@@ -31,7 +31,7 @@ public class LinkedListDeque<Item> {
     /** 数组中的元素个数，初始为0. */
     private int size;
     /** 定义一个Item类型的变量. */
-    private Item item0;
+    private T item0;
 
     /**
      *  Creates an empty linked list deque.
@@ -69,7 +69,7 @@ public class LinkedListDeque<Item> {
      * Adds an item of type T to the front of the deque.
      * @param item 参数
      */
-    public void addFirst(Item item) {
+    public void addFirst(T item) {
         size++;
         TNode p = new TNode(sentinel, item, sentinel.next);
         sentinel.next.prev = p;
@@ -80,7 +80,7 @@ public class LinkedListDeque<Item> {
      * Adds an item of type T to the back of the deque.
      * @param item 参数
      */
-    public void addLast(Item item) {
+    public void addLast(T item) {
         size++;
         TNode p = new TNode(sentinel.prev, item, sentinel);
         sentinel.prev.next = p;
@@ -92,13 +92,13 @@ public class LinkedListDeque<Item> {
      * If no such item exists, returns null.
      * 第 84 行：size可能是1,那么sentinel.next.next,这样写也对
      */
-    public Item removeFirst() {
+    public T removeFirst() {
         if (sentinel.next == sentinel) {
             return null;
         }
         size--;
 
-        Item i = sentinel.next.item;
+        T i = sentinel.next.item;
         TNode p = sentinel.next.next;
         p.prev = sentinel;
         sentinel.next = sentinel.next.next;
@@ -110,13 +110,13 @@ public class LinkedListDeque<Item> {
      * Removes and returns the item at the back of the deque.
      * If no such item exists, returns null.
      */
-    public Item removeLast() {
+    public T removeLast() {
         if (sentinel.next == sentinel) {
             return null;
         }
         size--;
 
-        Item i = sentinel.prev.item;
+        T i = sentinel.prev.item;
         TNode p = sentinel.prev.prev;
         p.next = sentinel;
         sentinel.prev = p;
@@ -131,7 +131,7 @@ public class LinkedListDeque<Item> {
      * @param index 索引
      * @return
      */
-    public Item get(int index) {
+    public T get(int index) {
         if (size == 0 || index > size) {
             return null;
         }
@@ -150,7 +150,7 @@ public class LinkedListDeque<Item> {
      * @param index 索引
      * @return
      */
-    public Item getRecursive(int index) {
+    public T getRecursive(int index) {
         int i = 0;
         TNode p = sentinel;
 
