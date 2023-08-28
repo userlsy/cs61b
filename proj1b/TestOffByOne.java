@@ -10,11 +10,11 @@ public class TestOffByOne {
     // Your tests go here.
     @Test
     public void testequalChars() {
-        OffByOne obo = new OffByOne();
-        System.out.println(obo.equalChars('a', 'b'));  // true
+//        OffByOne obo = new OffByOne();
+        System.out.println(offByOne.equalChars('a', 'b'));  // true
         System.out.println(offByOne.equalChars('r', 'q'));  // true
 
-        System.out.println(obo.equalChars('a', 'e'));  // false
+        System.out.println(offByOne.equalChars('a', 'e'));  // false
         System.out.println(offByOne.equalChars('z', 'a'));  // false
         System.out.println(offByOne.equalChars('a', 'a'));  // false
 
