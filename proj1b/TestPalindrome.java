@@ -23,13 +23,14 @@ public class TestPalindrome {
     public void testisPalindrome() {
         CharacterComparator cc = new OffByOne();
 
-//        assertFalse(palindrome.isPalindrome("cat"));
-//        assertTrue(palindrome.isPalindrome("noon"));
-//        assertTrue(palindrome.isPalindrome("a"));
-//        assertFalse(palindrome.isPalindrome("Aa"));
-//        assertTrue(palindrome.isPalindrome(""));
-//        assertFalse(palindrome.isPalindrome("good"));
+        assertFalse(palindrome.isPalindrome("cat"));
+        assertTrue(palindrome.isPalindrome("noon"));
+        assertTrue(palindrome.isPalindrome("a"));
+        assertFalse(palindrome.isPalindrome("Aa"));
+        assertTrue(palindrome.isPalindrome(""));
+        assertFalse(palindrome.isPalindrome("good"));
 
         assertTrue(palindrome.isPalindrome("flake", cc));
     }
+
 }

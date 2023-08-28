@@ -11,6 +11,9 @@ public class PalindromeFinder {
                 System.out.println(word);
             }
         }
+
+
+        System.out.println('a' - 'b');
     }
 //    Uncomment this class once you've written isPalindrome.
 }
