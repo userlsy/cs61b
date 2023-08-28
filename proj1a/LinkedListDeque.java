@@ -160,10 +160,9 @@ public class LinkedListDeque<T> {
 
     /**
      * Prints the items in the deque from first to last, separated by a space.
+     * note: please note the print method.
      */
     public void printDeque() {
-        /** note: please note the print method.
-         */
         TNode p = sentinel;
         while (p.next != sentinel) {
             System.out.print(p.next.item + " ");
@@ -171,5 +170,4 @@ public class LinkedListDeque<T> {
         }
         System.out.println();
     }
-
 }

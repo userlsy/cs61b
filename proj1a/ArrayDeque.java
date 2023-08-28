@@ -13,7 +13,9 @@ public class ArrayDeque<T> {
     /** 数组的大小，即数组所能容纳的元素个数. */
     private int capacity;
     /** usage ratio. */
+
     private double R;
+
 
     /** front 是队列中第一个元素的下标位置. */
     private int front;
