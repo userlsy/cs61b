@@ -28,6 +28,9 @@ public class TestOffByOne {
         System.out.println(offByOne.equalChars('1', '5'));
         System.out.println(offByOne.equalChars('1', '%'));
         System.out.println(offByOne.equalChars('@', '&'));
+        System.out.println(offByOne.equalChars('A', 'B'));
+        System.out.println(offByOne.equalChars('X', 'P'));
+        System.out.println(offByOne.equalChars('q', '2'));
 
     }
     
