@@ -26,7 +26,6 @@ public class Palindrome {
         return true;
     }
 
-
     public boolean isPalindrome(String word, CharacterComparator cc) {
         Deque<Character> deq2 =  new LinkedListDeque<Character>();
         deq2 = wordToDeque(word);

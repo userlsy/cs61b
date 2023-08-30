@@ -10,34 +10,14 @@ public class TestOffByOne {
     // Your tests go here.
     @Test
     public void testequalChars() {
-        System.out.println(offByOne.equalChars('a', 'b'));  // true
         assertTrue(offByOne.equalChars('a', 'b'));
-        System.out.println(offByOne.equalChars('r', 'q'));  // true
-
-        System.out.println(offByOne.equalChars('a', 'e'));  // false
         assertFalse(offByOne.equalChars('a', 'e'));
-        System.out.println(offByOne.equalChars('z', 'a'));  // false
-        System.out.println(offByOne.equalChars('a', 'a'));  // false
-
-        System.out.println(offByOne.equalChars('&', '%'));  // true
         assertTrue(offByOne.equalChars('&', '%'));
-
-        System.out.println(offByOne.equalChars('a', 'B'));  // false
-
-        System.out.println(offByOne.equalChars('1', '2'));  //
-
-        System.out.println(offByOne.equalChars('1', '5'));
+        assertFalse(offByOne.equalChars('a', 'B'));
         assertFalse(offByOne.equalChars('1', '5'));
-        System.out.println(offByOne.equalChars('1', '%'));
-        System.out.println(offByOne.equalChars('@', '&'));
-        System.out.println(offByOne.equalChars('A', 'B'));
-        System.out.println(offByOne.equalChars('X', 'P'));
         assertFalse(offByOne.equalChars('X', 'P'));
-        System.out.println(offByOne.equalChars('q', '2'));
         assertFalse(offByOne.equalChars('q', '2'));
-
     }
-    
     // Uncomment this class once you've created your CharacterComparator interface and OffByOne class. **/
 }
 
