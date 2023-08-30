@@ -20,17 +20,21 @@ public class TestOffByOne {
         System.out.println(offByOne.equalChars('a', 'a'));  // false
 
         System.out.println(offByOne.equalChars('&', '%'));  // true
+        assertTrue(offByOne.equalChars('&', '%'));
 
         System.out.println(offByOne.equalChars('a', 'B'));  // false
 
         System.out.println(offByOne.equalChars('1', '2'));  //
 
         System.out.println(offByOne.equalChars('1', '5'));
+        assertFalse(offByOne.equalChars('1', '5'));
         System.out.println(offByOne.equalChars('1', '%'));
         System.out.println(offByOne.equalChars('@', '&'));
         System.out.println(offByOne.equalChars('A', 'B'));
         System.out.println(offByOne.equalChars('X', 'P'));
+        assertFalse(offByOne.equalChars('X', 'P'));
         System.out.println(offByOne.equalChars('q', '2'));
+        assertFalse(offByOne.equalChars('q', '2'));
 
     }
     
